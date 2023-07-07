@@ -29,12 +29,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BirthdayCardTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingImage(getString(R.string.happy_birthday_text), getString(R.string.from_text))
+                    GreetingImage(
+                        getString(R.string.happy_birthday_text),
+                        getString(R.string.from_text)
+                    )
                 }
             }
         }
@@ -42,7 +44,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+fun GreetingText(message: String, from: String, modifier: Modifier) {
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
@@ -64,7 +66,7 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun GreetingImage(message: String, from: String) {
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
     val image = painterResource(id = R.drawable.androidparty)
 
     Box {
@@ -77,7 +79,7 @@ fun GreetingImage(message: String, from: String) {
         GreetingText(
             message = message,
             from = from,
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(8.dp)
         )
@@ -88,6 +90,9 @@ fun GreetingImage(message: String, from: String) {
 @Composable
 fun BirthdayCardPreview() {
     BirthdayCardTheme {
-        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.from_text))
+        GreetingImage(
+            stringResource(R.string.happy_birthday_text),
+            stringResource(id = R.string.from_text)
+        )
     }
 }
